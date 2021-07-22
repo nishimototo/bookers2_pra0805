@@ -1,4 +1,4 @@
-<h2>New book</h2>
+
 <%= form_with model: book, local: true do |f| %>
   <div class="form-group">
     <%= f.label :Title %>
@@ -8,5 +8,5 @@
     <%= f.label :Opinion %>
     <%= f.text_area :body, class:"form-control" %>
   </div>
-  <%= f.submit "Create Book", class:"btn btn-success btn-sm" %>
+  <%= f.submit class:"btn btn-success" %>
 <% end %>
