@@ -1,7 +1,9 @@
 <div class="container mt-3">
+  <%= render "books/error", model: @book %>
   <div class="row">
     <div class="col-md-3">
       <%= render "users/info", user: @user %>
+      <h2>New book</h2>
       <%= render "form", book: @newbook %>
     </div>
     <div class="col-md-8 offset-md-1">
@@ -17,6 +19,17 @@
             </td>
             <td><%= link_to @book.title, book_path(@book) %></td>
             <td><%= @book.body %></td>
+            <td>
+              <% if @book.favorited_by?(current_user) %>
+                <%= link_to book_favorites_path(@book), method: :delete do %>
+                  <i class="fas fa-heart unlike"><%= @book.favorites.count %></i>
+                <% end %>
+              <% else %>
+                <%= link_to book_favorites_path(@book), method: :post do %>
+                  <i class="fas fa-heart like"><%= @book.favorites.count %></i>
+                <% end %>
+              <% end %>
+            </td>
             <% if @user == current_user %>
               <td><%= link_to "Edit", edit_book_path(@book), class:"btn btn-success btn-sm" %></td>
               <td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-danger btn-sm" %></td>
