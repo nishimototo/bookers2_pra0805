@@ -4,7 +4,7 @@
     <div class="col-md-3">
       <%= render "users/info", user: @user %>
       <h2>New book</h2>
-      <%= render "form", book: @newbook %>
+      <%= render "books/form", book: @newbook %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
@@ -65,7 +65,7 @@
           </tr>
         </tbody>
       </table>
-      <%= form_with model: [@book, @book_comment], local: true do |f| %>
+      <%= form_with model: [@book, @comment], local: true do |f| %>
         <div>
           <%= f.text_area :comment, rows:"5", class:"form-control" %>
         </div>
