@@ -40,6 +40,17 @@ class UsersController < ApplicationController
     @users = @user.followers
   end
 
+  def book_search
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    create_at = params[:created_at]
+    if create_at == ""
+      @book_search = "日付を入力してください"
+    else
+      @book_search = @books.where("created_at LIKE?", "#{create_at}%").count
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)
