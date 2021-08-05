@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
-
+  impressionist :actions=> [:show], unique: [:ip_address]
 
   def index
     @user = current_user
@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     @user = @book.user
     @newbook = Book.new
     @book_comment = BookComment.new
-
+    impressionist(@book, nil, unique: [:ip_address])
   end
 
   def edit
