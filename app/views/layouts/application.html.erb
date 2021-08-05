@@ -74,6 +74,7 @@
     <% if flash[:notice] %>
       <p class="notice"><%= flash[:notice] %></p>
     <% end %>
+    <div class="text-center mt-3"><%= render "searches/search_form" %></div>
     <%= yield %>
     <footer>
       <div class="container mt-5">

@@ -20,4 +20,18 @@ class User < ApplicationRecord
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
+
+  def self.looks(word, search)
+    if search == "perfect_match"
+      User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      User.where("name LIKE?", "#{word}%")
+    elsif search == "backword_match"
+      User.where("name LIKE?", "%#{word}")
+    elsif search == "partial_match"
+      User.where("name LIKE?", "%#{word}%")
+    else
+      User.all
+    end
+  end
 end
