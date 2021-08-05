@@ -32,6 +32,77 @@
           <% end %>
         </tbody>
       </table>
+      <h2>投稿数の前日比・前週比</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>今日の投稿数</th>
+            <th>前日の投稿数</th>
+            <th>前日比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @today_book.count %></td>
+            <td><%= @yesterday_book.count %></td>
+            <td>
+              <% if @yesterday_book.count == 0 %>
+                前日の投稿数が0のため計算できません
+              <% else %>
+                <%= (@the_day_before * 100).round %>%
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>今週の投稿数</th>
+            <th>前週の投稿数</th>
+            <th>前週比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @this_week_book.count %></td>
+            <td><%= @last_week_book.count %></td>
+            <td>
+              <% if @last_week_book.count == 0 %>
+                前週の投稿数が0のため計算できません
+              <% else %>
+                <%= (@the_week_before * 100).round %>%
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>7日間分の投稿数</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>6日前</th>
+            <th>5日前</th>
+            <th>4日前</th>
+            <th>3日前</th>
+            <th>2日前</th>
+            <th>1日前</th>
+            <th>今日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @books.created_6days_ago.count %></td>
+            <td><%= @books.created_5days_ago.count %></td>
+            <td><%= @books.created_4days_ago.count %></td>
+            <td><%= @books.created_3days_ago.count %></td>
+            <td><%= @books.created_2days_ago.count %></td>
+            <td><%= @yesterday_book.count %></td>
+            <td><%= @today_book.count %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
