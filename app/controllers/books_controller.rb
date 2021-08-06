@@ -5,12 +5,13 @@ class BooksController < ApplicationController
   def index
     @user = current_user
     @book = Book.new
-    to = Time.zone.now.end_of_day
-    from = 6.day.ago.beginning_of_day
-    @books = Book.includes(:favorited_users).sort{|a,b|
-      b.favorited_users.includes(:favorites).where(created_at: from..to).size <=>
-      a.favorited_users.includes(:favorites).where(created_at: from..to).size
-    }
+    #to = Time.zone.now.end_of_day
+    #from = 6.day.ago.beginning_of_day
+    #@books = Book.includes(:favorited_users).sort{|a,b|
+      #b.favorited_users.includes(:favorites).where(created_at: from..to).size <=>
+      #a.favorited_users.includes(:favorites).where(created_at: from..to).size
+    #}
+    @books = Book.order(params[:sort])
   end
 
   def show
