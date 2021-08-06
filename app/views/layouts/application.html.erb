@@ -42,6 +42,10 @@
                     <i class="fas fa-sign-out-alt nav-link text-light"> logout</i>
                   <% end %>
                 </li>
+                <%= form_with url: cate_search_path, method: :get, local: true do |f| %>
+                  <%= f.text_field :keyword %>
+                  <%= f.submit "検索", class:"btn btn-primary" %>
+                <% end %>
               <% else %>
                 <li>
                   <%= link_to root_path do %>

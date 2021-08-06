@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get "home/about" => "homes#about"
   get "search" => "searches#search"
   get "chats/:id" => "chats#show", as: "chat"
-
+  get "cate_search" => "homes#cate_search"
+  
   resources :users do
     resource :relationships, only: [:create, :destroy]
       get "follows" => "users#follows"
