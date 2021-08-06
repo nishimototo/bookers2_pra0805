@@ -1,0 +1,31 @@
+<div class="container mt-3">
+  <%= render "books/error", model: @book %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/info", user: current_user %>
+      <h2>New book</h2>
+      <%= render "books/form", book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Group Detail</h2>
+      <table class="table table-hover table-inverse">
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @group, :image, format: "jpeg", fallback: "no_image.jpg", size: "40x40" %>
+            </td>
+            <td><%= @group.name %></td>
+            <td><%= @group.introduction %></td>
+            <td>
+              <% if @group.owner_id == current_user.id %>
+                <%= link_to "Edit", edit_group_path(@group), class:"btn btn-success btn-sm" %>
+              <% elsif %>
+              
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

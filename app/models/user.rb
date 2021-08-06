@@ -18,7 +18,9 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
   has_many :user_rooms, dependent: :destroy
   has_many :chats
-  
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
+
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
